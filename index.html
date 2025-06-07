@@ -2,66 +2,143 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Trang web của tôi - Mạnh Quân
-    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang xem phim chuyên nghiệp</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(214, 221, 115);
             margin: 0;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #fff;
         }
 
         header {
-            background-color: aqua;
-            color: aliceblue;
-            padding: 20px;
+            background-color: #1f1f1f;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #1db954;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        #video-player {
+            width: 100%;
+            height: 500px;
+            background-color: black;
+            margin-bottom: 20px;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            border-radius: 8px;
+        }
+
+        .movie-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .movie-item {
+            cursor: pointer;
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #1db954;
+        }
+
+        .movie-item img {
+            width: 100%;
+            display: block;
+        }
+
+        .movie-title {
+            padding: 10px;
+            font-size: 16px;
             text-align: center;
-            border-radius: 10px;
-        }
-
-        section {
-            background-color: rgb(255, 255, 255);
-            margin: 20px 0;
-            padding: 20px;
-            box-shadow: 0 0 10px black(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        a {
-            color: rgb(0, 84, 252)
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Giàng Mạnh Quân</h1>
-        <p>Chào mừng đến với trang cá nhân của tôi</p>
+        <h1>XemPhimPro</h1>
+        <nav>
+            <a href="#">Trang chủ</a>
+            <a href="#">Phim mới</a>
+            <a href="#">Thể loại</a>
+            <a href="#">Liên hệ</a>
+        </nav>
     </header>
-    <section>
-        <h2>🌟Giới thiệu bản thân</h2>
-        <p>Tôi là một người yêu công nghệ và sáng tạo. Tôi thích học hỏi và chia sẻ kiến thức với mọi người</p>
-        <p>TAO YÊU NU NHẤT TRÊN ĐỜI❤️❤️</p>
-    </section>
-    <section>
-        <h2>🛠️Kỹ năng</h2>
-        <ul>
-            <li>Học giỏi</li>
-            <li>Thông minh</li>
-            <li>Cái gì cũng biết làm</li>
-        </ul>
-    </section>
-    <section>
-        <h2>🌍Kinh nghiệm sống</h2>
-        <p>20 nồi bánh chưng</p>
-    </section>
-    <section>
-        <h2>📬Liên hệ</h2>
-        <p>Facebook: <a href="https://www.facebook.com/manh.quan.29810" target="_blank">facebook.com/manh.quan.29810</a>
-        </p>
-    </section>
+
+    <main>
+        <section id="video-player">
+            <video id="main-video" controls>
+                <source src="phim1.mp4" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
+        </section>
+
+        <section class="movie-list" id="movie-list">
+            <div class="movie-item" data-src="phim1.mp4">
+                <img src="thumbnail1.jpg" alt="Phim 1" />
+                <div class="movie-title">Phim Hành Động 1</div>
+            </div>
+            <div class="movie-item" data-src="phim2.mp4">
+                <img src="thumbnail2.jpg" alt="Phim 2" />
+                <div class="movie-title">Phim Hài Hước 2</div>
+            </div>
+            <div class="movie-item" data-src="phim3.mp4">
+                <img src="thumbnail3.jpg" alt="Phim 3" />
+                <div class="movie-title">Phim Kinh Dị 3</div>
+            </div>
+            <!-- Thêm phim tại đây -->
+        </section>
+    </main>
+
+    <script>
+        const movieItems = document.querySelectorAll('.movie-item');
+        const mainVideo = document.getElementById('main-video');
+
+        movieItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const videoSrc = item.getAttribute('data-src');
+                mainVideo.src = videoSrc;
+                mainVideo.play();
+            });
+        });
+    </script>
 </body>
 
 </html>
